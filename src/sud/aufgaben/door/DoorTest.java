@@ -2,7 +2,7 @@ package door;
 
 public class DoorTest {
     public static void main(String[] args) throws Exception {
-        // TEST OPEN UNLOCKED DOORS
+        System.out.println("\n\nTEST OPEN UNLOCKED DOORS\n");
         Door openUnlocked = new Door(DoorState.OPENUNLOCKED);
 
         DoorTest.testState(openUnlocked, DoorState.OPENUNLOCKED);
@@ -14,7 +14,7 @@ public class DoorTest {
         openUnlocked.setDoorType(DoorState.OPENUNLOCKED);
         DoorTest.testLock(openUnlocked, DoorState.OPENLOCKED);
         
-        // TEST OPEN LOCKED DOORS
+        System.out.println("\n\nTEST OPEN LOCKED DOORS\n");
         Door openLocked = new Door(DoorState.OPENLOCKED);
 
         DoorTest.testState(openLocked, DoorState.OPENLOCKED);
@@ -25,7 +25,7 @@ public class DoorTest {
 
         DoorTest.testUnlock(openLocked, DoorState.OPENUNLOCKED);
 
-        // TEST CLOSED UNLOCKED DOORS
+        System.out.println("\n\nTEST CLOSED UNLOCKED DOORS\n");
         Door closedUnlocked = new Door(DoorState.CLOSEDUNLOCKED);
 
         DoorTest.testState(closedUnlocked, DoorState.CLOSEDUNLOCKED);
@@ -37,7 +37,7 @@ public class DoorTest {
         closedUnlocked.setDoorType(DoorState.CLOSEDUNLOCKED);
         DoorTest.testLock(closedUnlocked, DoorState.CLOSEDLOCKED);
 
-        // TEST CLOSED LOCKED 
+        System.out.println("\n\nTEST CLOSED LOCKED\n"); 
         Door closedLocked = new Door(DoorState.CLOSEDLOCKED);
 
         DoorTest.testState(closedLocked, DoorState.CLOSEDLOCKED);
@@ -57,12 +57,14 @@ public class DoorTest {
         if (actualState != expected) {
             throw new Exception("Door got state " + actualState.toString() + ". Expected: " + expected.toString());
         }
+        System.out.println("State is '" + actualState.toString() + "'");
     }
 
     private static void testOpen(Door door, DoorState newState) throws Exception {
         door.open();
 
         // State should have changed
+        System.out.print("Opening door, ");
         DoorTest.testState(door, newState);
     }
 
@@ -78,6 +80,7 @@ public class DoorTest {
     private static void testClose(Door door, DoorState newState) throws Exception {
         door.close();
 
+        System.out.print("Closing door, ");
         DoorTest.testState(door, newState);
     }
 
@@ -93,6 +96,7 @@ public class DoorTest {
     private static void testLock(Door door, DoorState newState) throws Exception {
         door.lock();
 
+        System.out.print("Locking door, ");
         DoorTest.testState(door, newState);
     }
 
@@ -107,6 +111,7 @@ public class DoorTest {
     private static void testUnlock(Door door, DoorState newState) throws Exception {
         door.unlock();
 
+        System.out.print("Unlocking door, ");
         DoorTest.testState(door, newState);
     }
 

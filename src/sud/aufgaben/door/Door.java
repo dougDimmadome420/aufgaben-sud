@@ -19,7 +19,7 @@ public class Door {
 
     public void open() throws DoorException {
         try {
-            this.doorType = this.getTypeFromState(doorType.open());
+            this.setDoorType(doorType.open());
         } catch (DoorException e) {
             System.out.println(e.getMessage());
         }
@@ -27,7 +27,7 @@ public class Door {
 
     public void close() {
         try {
-            this.doorType = this.getTypeFromState(doorType.close());
+            this.setDoorType(doorType.close());
         } catch (DoorException e) {
             System.out.println(e.getMessage());
         }
@@ -35,7 +35,7 @@ public class Door {
 
     public void lock() {
         try {
-            this.doorType = this.getTypeFromState(doorType.lock());
+            this.setDoorType(doorType.lock());
         } catch (DoorException e) {
             System.out.println(e.getMessage());
         }
@@ -43,7 +43,7 @@ public class Door {
  
     public void unlock() {
         try {
-            this.doorType = this.getTypeFromState(doorType.unlock());
+            this.setDoorType(doorType.unlock());
         } catch (DoorException e) {
             System.out.println(e.getMessage());
         }
