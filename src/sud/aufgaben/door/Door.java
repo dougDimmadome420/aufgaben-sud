@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class Door {
     private DoorType doorType;
-
     private Map<DoorState, DoorType> types = new HashMap<>();
+    private Key key;
 
     public Door(DoorState state) {
         types.put(DoorState.OPENUNLOCKED, new DoorTypeOpenUnlocked());
@@ -15,6 +15,7 @@ public class Door {
         types.put(DoorState.CLOSEDLOCKED, new DoorTypeClosedLocked());
 
         this.doorType = types.get(state);
+        this.key = new Key();
     }
 
     public void open() throws DoorException {
@@ -33,7 +34,11 @@ public class Door {
         }
     }
 
-    public void lock() {
+    public void lock(Key key) {
+        if (this.getKey().equals(key)) {
+            System.out.println("You don't have the key for this door.");
+            return;
+        }
         try {
             this.setDoorType(doorType.lock());
         } catch (DoorException e) {
@@ -41,7 +46,11 @@ public class Door {
         }
     }
  
-    public void unlock() {
+    public void unlock(Key key) {
+        if (this.getKey().equals(key)) {
+            System.out.println("You don't have the key for this door.");
+            return;
+        }
         try {
             this.setDoorType(doorType.unlock());
         } catch (DoorException e) {
@@ -60,4 +69,10 @@ public class Door {
     public void setDoorType(DoorState state) {
         this.doorType = types.get(state);
     }
+
+    public Key getKey() {
+        return this.key;
+    }
+
+    public class Key {}
 }
